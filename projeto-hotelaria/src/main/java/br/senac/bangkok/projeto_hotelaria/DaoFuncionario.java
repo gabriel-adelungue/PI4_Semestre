@@ -1,4 +1,4 @@
-package br.senac.caco.funcionario;
+package br.senac.bangkok.projeto_hotelaria;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

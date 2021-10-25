@@ -9,7 +9,7 @@ public class DB {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		return DriverManager.getConnection(
 				"jdbc:mysql://localhost:3306/bangkok",
-				"root", "Forest*94");
+				"root", "adlungue2105");
 	}
 	
 	public static void main(String[] args) throws Exception, ClassNotFoundException {
