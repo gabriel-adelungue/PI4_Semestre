@@ -49,12 +49,14 @@ public class DaoQuartos {
 	}
 	
 	public static void atualizar(Quartos quartos) throws Exception{
-		String sql = "UPDATE QuartoEntity SET nome = (?) WHERE id = (?)";
+		String sql = "UPDATE QuartoEntity SET nome = (?), valor = (?), numeroQuarto = (?) WHERE id = (?)";
 	
 	//try-with-resources
 	try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
 		ps.setString(1, quartos.getNome());
-		ps.setInt(2, quartos.getId());
+		ps.setFloat(2, quartos.getValor());
+		ps.setInt(3, quartos.getNumeroQuarto());
+		ps.setInt(4, quartos.getId());
 		
 		ps.execute();
 		
