@@ -9,7 +9,7 @@ import java.util.List;
 public class DaoQuartos {
 	
 	public static void inserir(Quartos quartos) throws Exception{
-		String sql = "INSERT INTO quartos (nome, valor, numeroQuarto) VALUES(?, ?, ?)";
+		String sql = "INSERT INTO QuartoEntity (nome, valor, numeroQuarto) VALUES(?, ?, ?)";
 	
 	//try-with-resources
 	try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
@@ -25,7 +25,7 @@ public class DaoQuartos {
 	}	
 	
 	public static List<Quartos> listar() throws Exception{
-		String sql = "SELECT * FROM quartos";
+		String sql = "SELECT * FROM QuartoEntity";
 		
 		List<Quartos> resultados = new ArrayList<Quartos>();
 		
@@ -49,7 +49,7 @@ public class DaoQuartos {
 	}
 	
 	public static void atualizar(Quartos quartos) throws Exception{
-		String sql = "UPDATE quartos SET nome = (?) WHERE id = (?)";
+		String sql = "UPDATE QuartoEntity SET nome = (?) WHERE id = (?)";
 	
 	//try-with-resources
 	try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
@@ -63,7 +63,7 @@ public class DaoQuartos {
 	}
 	
 	public static void deletar(Quartos quartos) throws Exception{
-		String sql =  "DELETE FROM quartos WHERE id = (?)";
+		String sql =  "DELETE FROM QuartoEntity WHERE id = (?)";
 		
 		try(PreparedStatement ps = DB.connect().prepareStatement(sql)){
 			ps.setInt(1, quartos.getId());
