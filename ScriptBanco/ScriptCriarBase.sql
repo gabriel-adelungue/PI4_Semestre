@@ -33,8 +33,9 @@ Id INT PRIMARY KEY AUTO_INCREMENT,
 IdFuncionario INT,
 IdQuarto INT,
 IdHospede INT,
-DataInicioReserva DATETIME,
-DataFimReserva DATETIME
+ValorQuarto FLOAT,
+DataInicioReserva DATE NOT NULL,
+DataFimReserva DATE NOT NULL
 );
 ALTER TABLE ReservaEntity
 ADD FOREIGN KEY (IdFuncionario)

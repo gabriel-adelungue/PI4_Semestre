@@ -44,16 +44,14 @@ private static List<Quartos> lista = new ArrayList<Quartos>();
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("pesquisar")
 	public List<Quartos> pesquisar(@QueryParam("nome") String nome){
-		List<Quartos> resultados = new ArrayList<Quartos>();
-		
-		for(int i = 0; i < lista.size(); i++) {
-			Quartos quartos = lista.get(i);
-			if (quartos.getNome().equals(nome)) {
-				resultados.add(quartos);				
-			}
+		try {
+			return DaoQuartos.pesquisar(nome);
 		}
-		
-		return resultados;
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	
 	}
 	
 	@PUT
@@ -78,9 +76,9 @@ private static List<Quartos> lista = new ArrayList<Quartos>();
 	
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void deletar(Quartos quartos) {
+	public void deletar(@QueryParam("id") int id) {
 		try {
-			DaoQuartos.deletar(quartos);
+			DaoQuartos.deletar(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

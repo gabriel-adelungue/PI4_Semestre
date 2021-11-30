@@ -44,16 +44,13 @@ public class ServicoFuncionario {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("pesquisar")
 	public List<Funcionario> pesquisar(@QueryParam("nome") String nome){
-		List<Funcionario> resultados = new ArrayList<Funcionario>();
-		
-		for(int i = 0; i < lista.size(); i++) {
-			Funcionario funcionarios = lista.get(i);
-			if (funcionarios.getNome().equals(nome)) {
-				resultados.add(funcionarios);				
-			}
+		try {
+			return DaoFuncionario.pesquisar(nome);
 		}
-		
-		return resultados;
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	@PUT
@@ -81,9 +78,9 @@ public class ServicoFuncionario {
 	
 	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void deletar(Funcionario funcionarios) {
+	public void deletar(@QueryParam("id")int id) {
 		try {
-			DaoFuncionario.deletar(funcionarios);
+			DaoFuncionario.deletar(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	

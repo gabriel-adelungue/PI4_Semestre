@@ -39,7 +39,6 @@ public class DaoQuartos {
 				quartos.setNome(rs.getString("nome"));				
 				quartos.setNumeroQuarto(rs.getInt("numeroQuarto"));
 				quartos.setValor(rs.getFloat("valor"));
-				
 				resultados.add(quartos);
 				 
 			}
@@ -64,14 +63,37 @@ public class DaoQuartos {
 
 	}
 	
-	public static void deletar(Quartos quartos) throws Exception{
+	public static void deletar(int id) throws Exception{
 		String sql =  "DELETE FROM QuartoEntity WHERE id = (?)";
 		
 		try(PreparedStatement ps = DB.connect().prepareStatement(sql)){
-			ps.setInt(1, quartos.getId());
+			ps.setInt(1, id);
 			
 			ps.execute();
 		}
+	}
+	public static List<Quartos> pesquisar(String nome) throws Exception {
+		String sql = "SELECT * FROM quartoentity WHERE Nome like ?";
+		
+		List<Quartos> resultados = new ArrayList<Quartos>();
+		
+		try (PreparedStatement ps = DB.connect().prepareStatement(sql)){
+			ps.setString(1, "%" + nome + "%");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Quartos quartos = new Quartos();
+				
+				quartos.setId(rs.getInt("id"));				
+				quartos.setNome(rs.getString("nome"));				
+				quartos.setNumeroQuarto(rs.getInt("numeroQuarto"));
+				quartos.setValor(rs.getFloat("valor"));
+				resultados.add(quartos);
+			}
+		}
+		
+		return resultados;
 	}
 
 }
